@@ -1,9 +1,13 @@
-#sources a[href]{
+.liens-footer {
+    font-size: small;
+}
+
+.liens-footer a[href]{
     text-decoration: none;
     color: white;
 }
 
-#sources a[href]:hover{
+.liens-footer a[href]:hover{
     text-decoration: underline;
 }
 
@@ -19,9 +23,16 @@
 
 #img-text {
        color: rgb(240, 234, 234) !important;
-       text-shadow: 6px 6px 6px black;
+       text-shadow: 6px 6px 6px black, -1px 0 rgb(58, 57, 57), 0 1px rgb(58, 57, 57), 1px 0 rgb(58, 57, 57), 0 -1px rgb(58, 57, 57);
 }
 
-#Accueil, #CurricculumVitae, #TravauxRealises, #Recommandations, #Contact h2{
+#Accueil h2, #CurriculumVitae h2, #TravauxRealises h2, #Recommandations h2, #Contact h2{
     text-decoration: underline;
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    display: none;
 }
