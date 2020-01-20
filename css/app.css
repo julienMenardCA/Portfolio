@@ -12,7 +12,7 @@
 }
 
 #imieBgnd {
-    background-image: url("../imie_background.png");
+    background-image: url("../assets/img/imie_background.png");
     background-size: 40em;
     opacity: 0.9;
     background-position: center;
