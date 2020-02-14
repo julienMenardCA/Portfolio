@@ -34,10 +34,31 @@
                 if (!empty($errors)) {
                     echo '<div class="alert alert-danger">';
                     foreach ($errors as $error) {
-                        echo '<div>' . $error . '</div>'    ;
+                        echo '<div>' . $error . '</div>';
                     }
                     echo '</div>';
-                }   
+                }
+                if((isset($messageState) && $messageState === true) || (isset($recoSent) && $recoSent === true))
+                {
+                    $whereAreWe = "";
+                    if($_GET['page'] == 'contact')
+                    {
+                        $whereAreWe = "Message";
+                    }
+                    elseif($_GET['page'] == 'ajout-recommandation')
+                    {
+                        $whereAreWe = "Recommandation";
+                    }
+                    echo '<div class="alert alert-success">';
+                    echo '<div>' . 'Votre '.$whereAreWe.' à bien été envoyé' . '</div>';
+                    echo '</div>';
+                }
+                elseif(isset($messageState) && $messageState !== true && $messageState !== false)
+                {
+                    echo '<div class="alert alert-danger">';
+                    echo '<div>' . $messageState . '</div>';
+                    echo '</div>';
+                }
                 ?>
 
                 <button class="btn btn-primary">Envoyer !</button>

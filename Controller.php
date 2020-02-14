@@ -113,7 +113,7 @@ Class Controller
         {
             $errors[] = "Vous avez renseigné un message trop court.";
         }
-        elseif(mb_strlen($content) > 100)
+        elseif(mb_strlen($content) > 500)
         {
             $errors[] = "Vous avez renseigné un message trop long.";
         }
@@ -137,14 +137,15 @@ Class Controller
                 // Instantiation and passing `true` enables exceptions
                 $mail = new PHPMailer(true);
 
+                $messageState = false;
                 try {
                     //Server settings
-                    $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
+                    //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
                     $mail->isSMTP();                                            // Send using SMTP            
-                    $mail->Host       = 'smtp.sendgrid.net';                    // Set the SMTP server to send through
+                    $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
                     $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-                    $mail->Username   = 'apikey';                     // SMTP username
-                    $mail->Password   = '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';                               // SMTP password
+                    $mail->Username   = 'portfolio.messages.julien.menard@gmail.com';                     // SMTP username
+                    $mail->Password   = 'PortfolioJulienMenard.1234.';                               // SMTP password
                     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
                     $mail->Port       = 587;                                    // TCP port to connect to
                     
@@ -158,12 +159,14 @@ Class Controller
                     // Content
                     $mail->isHTML(true);                                  // Set email format to HTML
                     $mail->Subject = 'Message Portfolio';
-                    $mail->Body    = $this->formInfos['content'];
+                    $mail->Body    = 'Message de '.$this->formInfos['firstname'].' '.$this->formInfos['lastname'].' de l\'entreprise '.$this->formInfos['entreprise'].' ('.$this->formInfos['location_entreprise'].') ['.$this->formInfos['email'].']<br><br><br>'.$this->formInfos['content'];
 
                     $mail->send();
-                    echo 'Message has been sent';
+                    //echo 'Message has been sent';
+                    $messageState = true;
                 } catch (Exception $e) {
-                    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                    //echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                    $messageState = $mail->ErrorInfo;
                 }
             }
         }
@@ -186,6 +189,7 @@ Class Controller
             {
                 $manager = new Manager();
                 $manager->saveNewRecommandation($this->formInfos);
+                $recoSent = true;
             }
         }
 
