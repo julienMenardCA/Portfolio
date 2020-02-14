@@ -17,7 +17,7 @@
         <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="index.php?page=accueil#Recommandations">Recommandations</a>
         <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="index.php?page=accueil#Contact">Contact</a>
+            <a class="nav-link js-scroll-trigger" href="index.php?page=contact">Contact</a>
           </li>
         </ul>
       </div>

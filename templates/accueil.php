@@ -9,7 +9,7 @@
 </header>
 
 <main>
-<section id="Accueil">
+<section id="Acceuil">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 mx-auto">
@@ -20,12 +20,16 @@
     </div>
 </section>
 
-<section id="CurriculumVitae" class="bg-light">
+<section class="bg-light" id="CurriculumVitae">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 mx-auto">
                 <h2>Curriculum Vitae</h2>
-                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut optio velit inventore, expedita quo laboriosam possimus ea consequatur vitae, doloribus consequuntur ex. Nemo assumenda laborum vel, labore ut velit dignissimos.</p>
+                <?php include("cv.php") ?>
+                <br>
+                <form action="index.php?page=cv" method="post" target="_blank">
+                    <button class="btn btn-primary" type="submit">Voir mon CV en plein écran (format pdf)</button>
+                </form>
             </div>
         </div>
     </div>
@@ -42,29 +46,32 @@
     </div>
 </section>
 
-<section id="Recommandations" class="bg-light">
+<section class="bg-light" id="Recommandations">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 mx-auto">
                 <h2>Recommandations</h2>
-                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero odio fugiat voluptatem dolor, provident officiis, id iusto! Obcaecati incidunt, qui nihil beatae magnam et repudiandae ipsa exercitationem, in, quo totam.</p>
+                <?php 
+                    if(empty($recommandations))
+                    {?>
+                    <div class="shrug">¯\_(ツ)_/¯</div>
+                    <div class="yarien">
+                        <p>Pour l'instant il n'y aucune recommandations, mais vous pouvez en ajouter</p>
+                        <form action="index.php?page=ajout-recommandation" method="post">
+                            <button class="btn btn-primary" type="submit">Ajouter une recommandation</button>
+                        </form>
+                    </div>
+                    <?php }
+                    elseif(sizeof($recommandations) == 1)
+                    {
+                        include("carousel.php");
+                    }
+                ?>
             </div>
         </div>
     </div>
 </section>
-
-<section id="Contact">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 mx-auto">
-                <h2>Contact</h2>
-                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero odio fugiat voluptatem dolor, provident officiis, id iusto! Obcaecati incidunt, qui nihil beatae magnam et repudiandae ipsa exercitationem, in, quo totam.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top" role="button"><i class="fa fa-chevron-up"></i></a>
+<?php include("back-to-top-button.php"); ?>
 </main>
 
 <?php include("bottom.php") ?>

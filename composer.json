@@ -1,0 +1,9 @@
+{
+    "require": {
+        "phpmailer/phpmailer": "^6.1",
+        "mailjet/mailjet-apiv3-php": "^1.4"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^5.0"
+    }
+}

@@ -211,6 +211,7 @@
     Tout litige en relation avec l’utilisation du site&nbsp;<a href="https://www.julienmenard.portfolio.fr">https://www.julienmenard.portfolio.fr</a>&nbsp;est soumis au droit français. 
     En dehors des cas où la loi ne le permet pas, il est fait attribution exclusive de juridiction aux tribunaux compétents de 44600 Nantes</p>
 </body>
+<?php include("back-to-top-button.php"); ?>
 </main>
 
 <?php include("bottom.php") ?>
