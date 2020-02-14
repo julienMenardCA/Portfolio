@@ -83,7 +83,7 @@ Class Controller
         {
             $errors[] = "Vous n'avez pas renseigné de nom d'entreprise.";
         }
-        elseif(mb_strlen($entreprise) < 10)
+        elseif(mb_strlen($entreprise) < 3)
         {
             $errors[] = "Vous avez renseigné un nom d'entreprise trop court.";
         }

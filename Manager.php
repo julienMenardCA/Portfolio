@@ -11,7 +11,8 @@ class Manager
     {
         $sql = "SELECT *
                 FROM recommandations
-                ORDER BY date_created DESC";
+                ORDER BY date_created DESC
+                LIMIT 5";
 
         $pdo = DbConnection::getPdo();
 

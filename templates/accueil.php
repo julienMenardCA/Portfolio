@@ -62,7 +62,7 @@
                         </form>
                     </div>
                     <?php }
-                    elseif(sizeof($recommandations) == 1)
+                    else
                     {
                         include("carousel.php");
                     }
