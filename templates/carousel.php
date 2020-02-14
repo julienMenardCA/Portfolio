@@ -26,7 +26,32 @@
         }?>
     <div class="carousel-item <?=$firstReco?>">
         <div class="carousel-caption">
-            <h5><?=$recommandation['commentaire']?></h5>
+            <?php 
+            $commentaire = "";
+            $tailleReco = mb_strlen($recommandation['commentaire']);
+            if($tailleReco > 250 )
+            {
+                $commentaireReduit = mb_substr($recommandation['commentaire'], 0, 250);
+                $commentaireExplode = explode(" ", $commentaireReduit);
+                for ($i=0; $i < sizeof($commentaireExplode)-1; $i++) 
+                { 
+                    $commentaire .= $commentaireExplode[$i];
+                    if($i < sizeof($commentaireExplode)-2)
+                    {
+                        $commentaire .= " ";
+                    }
+                    else
+                    {
+                        $commentaire .= "[...]";
+                    }
+                }
+            }
+            else
+            {
+                $commentaire = $recommandation['commentaire'];
+            }
+            ?>
+            <p><?=$commentaire?></p>
             <p><?=$recommandation['prenom'].' '.$recommandation['nom'].' le '.$recommandation['date_created']?></p>
         </div>
     </div>
@@ -47,6 +72,15 @@
   <?php }
   ?>
 </div>
-<form action="index.php?page=ajout-recommandation" method="post">
-    <button class="btn btn-primary" type="submit">Ajouter une recommandation</button>
-</form>
+<div class="carousel-buttons">
+    <div class="gauche">
+        <form action="index.php?page=ajout-recommandation" method="post">
+            <button class="btn btn-primary" type="submit">Ajouter une recommandation</button>
+        </form>
+    </div>
+    <div class="droite">
+        <form action="index.php?page=toutes-recommandation" method="post">
+            <button class="btn btn-primary" type="submit">Voir toutes les recommandations</button>
+        </form>
+    </div>
+</div>

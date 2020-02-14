@@ -3,13 +3,12 @@
     <div class="container text-center">
       <div id="img-text">
         <h1>Welcome to my success</h1>
-        <!-- <p class="lead">Bienvenue sur le portfolio de Julien Menard</p> -->
       </div>
     </div>
 </header>
 
 <main>
-<section id="Acceuil">
+<section id="Accueil">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 mx-auto">

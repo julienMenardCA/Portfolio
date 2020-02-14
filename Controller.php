@@ -16,7 +16,7 @@ Class Controller
     public function home()
     {
         $manager = new Manager();
-        $recommandations = $manager->getRecommandations();
+        $recommandations = $manager->getSomeRecommandations();
 
         include("templates/accueil.php");
     }
@@ -194,6 +194,14 @@ Class Controller
         }
 
         include("templates/add-reco-form.php");
+    }
+
+    public function allRecommandations()
+    {
+        $manager = new Manager();
+        $allRecommandations = $manager->getAllRecommandations();
+
+        include("templates/all-recommendations.php");
     }
 
     public function fourOfour()

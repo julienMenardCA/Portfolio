@@ -7,12 +7,27 @@
  */
 class Manager
 {
-    public function getRecommandations()
+    public function getSomeRecommandations()
     {
         $sql = "SELECT *
                 FROM recommandations
                 ORDER BY date_created DESC
                 LIMIT 5";
+
+        $pdo = DbConnection::getPdo();
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+
+        $postsHome = $stmt->fetchAll();
+        return $postsHome;
+    }
+
+    public function getAllRecommandations()
+    {
+        $sql = "SELECT *
+                FROM recommandations
+                ORDER BY date_created DESC";
 
         $pdo = DbConnection::getPdo();
 

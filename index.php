@@ -39,6 +39,10 @@ elseif($_GET['page'] == "ajout-recommandation")
 {
     $controller->addRecommandations();
 }
+elseif($_GET['page'] == "toutes-recommandation")
+{
+    $controller->allRecommandations();
+}
 //Si la nom de la page n'est pas reconnue => 404
 else 
 {
