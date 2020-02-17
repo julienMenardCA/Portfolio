@@ -2,6 +2,14 @@ body {
     margin: 0px;
 }
 
+footer {
+    height: 10vh;
+}
+
+main {
+    min-height: 85vh;
+}
+
 .liens-footer {
     font-size: small;
 }
@@ -58,7 +66,7 @@ body {
      margin-top: 5vh;
      margin-left: 20%;
      margin-right: 20%;
-     margin-bottom: 5.15%;
+     /* margin-bottom: 5.15%; */
  }
 
  .contact-form h3 {
@@ -125,4 +133,26 @@ body {
     border: 2px solid lightblue;
     border-radius: 10px;
     padding: 10px;
+}
+
+.admin-connect {
+    /* margin-top: 10%; */
+    /* margin-bottom: 13.4%; */
+    padding-top: 10%;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.add-post {
+    /* margin-top: 2%; */
+    /* margin-bottom: 2.8%; */
+    padding-top: 2%;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.work-detail {
+    padding-top: 2%;
+    margin-left: 15%;
+    margin-right: 15%;
 }

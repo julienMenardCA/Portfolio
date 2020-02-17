@@ -1,13 +1,9 @@
-<?php 
-spl_autoload_register();
+<?php
 // Import PHPMailer classes into the global namespace
 // These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
-
-// Load Composer's autoloader
-require 'vendor/autoload.php';
 
 Class Controller
 {
@@ -17,6 +13,7 @@ Class Controller
     {
         $manager = new Manager();
         $recommandations = $manager->getSomeRecommandations();
+        $works = $manager->getSomeWorks();
 
         include("templates/accueil.php");
     }
@@ -202,6 +199,198 @@ Class Controller
         $allRecommandations = $manager->getAllRecommandations();
 
         include("templates/all-recommendations.php");
+    }
+
+    public function adminLogin()
+    {
+        //si le form est soumis... 
+        if (!empty($_POST)) 
+        {
+            //par défaut je dis que c'est pas valide
+            $formIsValid = false;
+
+            //récupérer le username ou l'email 
+            $email = $_POST['email'];
+            //récupérer le mot de passe du form
+            $password = $_POST['password'];
+
+            //aller chercher dans la bdd la ligne correspondant à l'email
+            $manager = new Manager();
+            $foundUser = $manager->getAdminInfos($email);
+
+            //si on a trouvé une ligne, un user avec cet email ou pseudo...
+            if (!empty($foundUser)) 
+            {
+                //on compare son mdp
+                $passwordIsValid = password_verify($password, $foundUser['password']);
+
+                //si le mdp est bon...
+                if ($passwordIsValid){
+                    //connexion du user !!!!
+                    $_SESSION['admin']['connected'] = true;
+                    
+                    header("Location: index.php");
+                    die();
+                }
+                else
+                {
+                    //echo 'Mauvais mot de passe';
+                }
+            }
+            else
+            {
+                //echo 'Mauvais identifiants';
+            }
+        }
+        
+        include("admin/templates/login.php");
+    }
+
+    public function adminPage()
+    {
+        if($_SESSION['admin']['connected'] === true)
+        {
+            $this->addWork();
+        }
+        else
+        {
+            include("templates/accueil.php");
+        }
+    }
+
+    public function adminLogOff()
+    {
+        session_destroy();
+        
+        header("Location: index.php");
+        die();
+    }
+
+    public function addWork()
+    {
+        if(!empty($_POST))
+        {
+            $errors = [];
+
+            //seulement si on a un upload, on valide ! 
+            if(!empty($_FILES['pic']))
+            {
+                //le fichier temporaire, uploadé sur le serveur
+                $file = $_FILES['pic']['tmp_name'];
+
+                //on s'assure que le type du fichier est safe
+                $finfo = finfo_open(FILEINFO_MIME_TYPE);
+                $mime = finfo_file($finfo, $file);
+
+                //les types mime que j'accepte
+                $acceptedTypes = ["image/jpeg", "image/jpg", "image/png"];
+
+                //je cherche le mime du fichier parmi ceux que j'accepte
+                if (!in_array($mime, $acceptedTypes))
+                {
+                    $errors[] = "Type de fichier non accepté !";
+                }
+
+                // renseigner correctement les tailles dans le php.ini !!!
+                // post_max_size 
+                // upload_max_filesize 
+                $size = $_FILES['pic']['size'];
+                if ($size > 20000000)
+                {
+                    $errors[] = "Fichier trrop gros. 20 mb max svp.";
+                }
+                
+                //on devine l'extension du fichier
+                $extension = str_replace("image/", ".", $_FILES['pic']['type']);
+                
+                //génère une chaîne toujours unique
+                $newFilename = uniqid() . $extension;
+                
+                //si l'upload est valide
+                if (empty($errors))
+                {
+                    //déplace le fichier temporaire vers mon dossier à moi
+                    move_uploaded_file(
+                        $_FILES['pic']['tmp_name'], 
+                        'assets/img/works/'.$newFilename
+                    );
+
+                    //on utilise SimpleImage pour redimensionner notre image
+                    //https://github.com/claviska/SimpleImage 
+                    $simpleImage = new \claviska\SimpleImage();
+
+                    $simpleImage
+                        ->fromFile("assets/img/works/$newFilename")
+                        ->bestFit(500, 500)
+                        //->sepia()
+                        ->toFile("assets/img/works/$newFilename", null, 100);
+                    }
+            }
+
+            $title = strip_tags($_POST['title']);
+            $description = strip_tags($_POST['description']);
+            $github = strip_tags($_POST['github']);
+            $webLink = strip_tags($_POST['web-link']);
+            $picture = $newFilename;
+
+            if(empty($title))
+            {
+                $errors[] = "Votre article n'a pas de titre !";
+            }
+            elseif(strlen($title > 100))
+            {
+                $errors[] = "Titre trop long";
+            }
+            if(empty($description))
+            {
+                $errors[] = "Mettez une description SVP";
+            }
+            elseif(strlen($description > 500))
+            {
+                $errors[] = "Article trop long";
+            }
+
+            if(empty($github))
+            {
+                $github = null;
+            }
+            if(empty($webLink))
+            {
+                $webLink = null;
+            }
+
+            if(empty($errors))
+            {
+                $workInfos = [
+                    "title" => $title,
+                    "description" => $description,
+                    "github" => $github,
+                    "webLink" => $webLink,
+                    "picture" => $picture,
+                ];
+
+                $manager = new Manager();
+                $id = $manager->addWork($workInfos);
+
+                header("Location: index.php?page=detail-projet&id=".$id);
+            }
+        }
+
+        include("admin/templates/admin-page.php");
+    }
+
+    public function workDetails()
+    {
+        $manager = new Manager();
+        $work = $manager->getWorkById($_GET['id']);
+        if($work !== false)
+        {
+            include("templates/work-details.php");
+        }
+        else
+        {
+            $this->fourOfour();
+        }
     }
 
     public function fourOfour()

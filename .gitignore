@@ -105,3 +105,9 @@ Thumbs.db
 !.gitignore
 !.editorconfig
 !.phpcs.xml.dist
+
+# Ignore le dossier de mon jeu de Blackjack
+/Blackjack-master
+
+# Ignore le dossier des images uploadés
+/assets/img/works
