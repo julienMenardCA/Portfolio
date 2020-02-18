@@ -1,4 +1,5 @@
-<?php include("top.php") ?>
+<?php include("top.php"); 
+include("carousel.php");?>
 <header class="bg-primary text-white" id="imieBgnd">
     <div class="container text-center">
       <div id="img-text">
@@ -13,7 +14,7 @@
         <div class="row">
             <div class="col-lg-8 mx-auto">
                 <h2>Accueil</h2>
-                <p class="lead">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Autem commodi quidem rerum optio voluptas totam earum deleniti veritatis voluptatem quasi ipsam facilis beatae eveniet id, cum dolor quae, asperiores recusandae nihil atque similique consequatur amet porro eligendi. Officia, iusto quas? Soluta earum mollitia, iste explicabo dolores delectus tempore aspernatur veritatis.</p>
+                <p></p>
             </div>
         </div>
     </div>
@@ -39,7 +40,7 @@
         <div class="row">
             <div class="col-lg-8 mx-auto">
                 <h2>Travaux Réalisés</h2>
-                <?php include("carousel-works.php");?>
+                <?php carousel('travaux', $works);?>
             </div>
         </div>
     </div>
@@ -63,7 +64,7 @@
                     <?php }
                     else
                     {
-                        include("carousel-recommandations.php");
+                        carousel('recommandations', $recommandations);
                     }
                 ?>
             </div>

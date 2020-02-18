@@ -14,5 +14,3 @@ $(document).ready(function(){
 			return false;
 		});
 });
-
-$('.carousel').carousel()
