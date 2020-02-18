@@ -1,5 +1,7 @@
-<?php include(dirname(__FILE__)."/../../templates/top.php");?>
-
+<?php 
+//J'utilise "dirname(__FILE__)" ici pour pouvoir utilisé un chemin relatif
+include(dirname(__FILE__)."/../../templates/top.php");?>
+<!-- Page Admin -->
 <main class="add-post">
     <form method="post" enctype="multipart/form-data">
         <div class="form-group"> 

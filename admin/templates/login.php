@@ -1,6 +1,7 @@
-<?php include(dirname(__FILE__)."/../../templates/top.php");
-//echo password_hash('adminTest.1234.', PASSWORD_DEFAULT);?>
-
+<?php 
+//J'utilise "dirname(__FILE__)" ici pour pouvoir utilisé un chemin relatif
+include(dirname(__FILE__)."/../../templates/top.php");?>
+<!-- Page de connexion pour l'admin -->
 <main class="admin-connect">
     <h2>Connexion</h2>
 

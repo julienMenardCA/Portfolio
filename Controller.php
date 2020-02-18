@@ -9,15 +9,22 @@ Class Controller
 {
     private $formInfos = [];
 
+    /**
+     * Pour la page d'accueil
+     */
     public function home()
     {
         $manager = new Manager();
+        //Ces deux méthodes sont appellés pour récupérer les données nécessaire aux deux carousels
         $recommandations = $manager->getSomeRecommandations();
         $works = $manager->getSomeWorks();
 
         include("templates/accueil.php");
     }
 
+    /**
+     * Méthode pour vérifier si le formulaire est valide
+     */
     private function checkForm()
     {
         $errors = [];
@@ -122,7 +129,9 @@ Class Controller
     {
         include("templates/mentions-legales.php");
     }
-
+    /**
+     * Traitement du formaulaire de contact et envoie de mail
+     */
     public function contact()
     {
         if(!empty($_POST))
@@ -175,7 +184,9 @@ Class Controller
     {
         include("templates/cvpdf.php");
     }
-
+    /**
+     * Traite le formulaire et ajoute une recommandation dans la BDD
+     */
     public function addRecommandations()
     {
         if(!empty($_POST))

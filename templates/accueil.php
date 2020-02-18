@@ -1,5 +1,8 @@
-<?php include("top.php"); 
+<?php 
+include("top.php"); 
+//Inclue carousel.php pour ensuite appellé sa fonction pour afficher les carousels
 include("carousel.php");?>
+<!-- Page d'accueil -->
 <header class="bg-primary text-white" id="imieBgnd">
     <div class="container text-center">
       <div id="img-text">

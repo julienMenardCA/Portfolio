@@ -1,5 +1,5 @@
 <?php include("top.php") ?>
-
+<!-- Page de détail des travaux -->
 <main class="work-detail">
     <h2><?=$work['titre']?></h2>
     <img src="assets/img/works/<?=$work['image']?>">

@@ -1,5 +1,4 @@
 <?php 
-
 /**
  * Cette classe contient toutes les requêtes SQL !
  * Une requête par méthode ! 
@@ -7,6 +6,9 @@
  */
 class Manager
 {
+    /**
+     * Récupère les 5 dernières recommandations dans la BDD pour les afficher dans le carousel
+     */
     public function getSomeRecommandations()
     {
         $sql = "SELECT *
@@ -23,6 +25,9 @@ class Manager
         return $recosHome;
     }
 
+    /**
+     * Récupère toutes les recommandations dans la BDD
+     */
     public function getAllRecommandations()
     {
         $sql = "SELECT *
@@ -38,6 +43,10 @@ class Manager
         return $postsHome;
     }
 
+    /**
+     * Sauvegarde une nouvelle recommandation
+     * $formInfos : les informations du formulaire d'ajout de recommandation
+     */
     public function saveNewRecommandation($formInfos)
     {
         $datetime = new DateTime();
@@ -63,6 +72,9 @@ class Manager
         ]);
     }
 
+    /**
+     * Récupère les infos d'admin dans la BDD pour se connecter et accéder aux fonctions d'admin
+     */
     public function getAdminInfos($email)
     {
         $sql = "SELECT * FROM admin 
@@ -80,6 +92,10 @@ class Manager
         return $adminInfos;
     }
 
+    /**
+     * Ajoute un nouveau projet dans la BDD
+     * $workInfos : les informations du formulaire d'ajout de projet
+     */
     public function addWork($workInfos)
     {
         $sql = "INSERT INTO 
@@ -102,6 +118,9 @@ class Manager
         return $pdo->lastInsertId();
     }
 
+    /**
+     * Récupère un projet par son $id pour ensuite en afficher les détails dans une page prévu à cet effet
+     */
     public function getWorkById($id)
     {
         $sql = "SELECT *
@@ -119,6 +138,9 @@ class Manager
         return $postById;
     }
 
+    /**
+     * Récupère les 5 derniers projets dans la BDD pour les afficher dans le carousel
+     */
     public function getSomeWorks()
     {
         $sql = "SELECT *

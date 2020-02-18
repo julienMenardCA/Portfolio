@@ -1,7 +1,7 @@
 <?php include("top.php") ?>
-
+<!-- Mentions légales -->
 <main>
-<body>
+<body>  
     <h2>Définitions</h2>
     <p><b>Client&nbsp;:</b>&nbsp;tout professionnel ou personne physique capable au sens des articles 1123 et suivants du Code civil, ou personne morale, qui visite le Site objet des présentes conditions générales.<br>
     <b>Prestations et Services&nbsp;:</b> <a href="https://www.julienmenard.portfolio.fr">https://www.julienmenard.portfolio.fr</a> met à disposition des Clients&nbsp;:</p>

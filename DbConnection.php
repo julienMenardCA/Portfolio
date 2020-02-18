@@ -1,5 +1,5 @@
 <?php 
-
+//Classe de connexion à la BDD
 class DbConnection 
 {
     //cette méthode est statique

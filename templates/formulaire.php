@@ -1,3 +1,4 @@
+<!-- Formulaire de contact et/ou d'ajout de recommandation -->
 <div class="formulaire">
         <form method="post">
             <div class="gauche">

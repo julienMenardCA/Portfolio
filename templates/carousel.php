@@ -1,7 +1,11 @@
 <?php 
 //Cette fonction permet de faire un carousel différent correspondant à ce que je veux afficher
-//Soit pour les recommandations ou pour les travaux effectué
-function carousel($carouselType, $daraArray)
+//Soit pour les recommandations ou pour les travaux effectués
+/**
+ * $carouselType : une chaîne de caractères permettant de savoir quel type de carousel à affiché
+ * $dataArray : un tableau de données à afficher dans les carousels
+ */
+function carousel($carouselType, $dataArray)
 {
     $id = "";
     $comment = "";
@@ -11,7 +15,7 @@ function carousel($carouselType, $daraArray)
     if($carouselType == 'travaux')
     {
         $id = 'carouselTravaux';
-        $characterLimit = 50;
+        $characterLimit = 80;
         $img = true;
         $comment = 'description';
     }
@@ -25,14 +29,16 @@ function carousel($carouselType, $daraArray)
     }
     ?>
     <div id="<?=$id?>" class="carousel slide" data-ride="carousel">
-    <?php // ?>
+    <?php //Affiche autant d'indicateurs pour le carousel qu'il y a d'élément dans le tableau
+          //reçu en paramètre, maximum 5 (définit dans la requête SQL) ?>
     <ol class="carousel-indicators">
         <?php 
-        $nbrRecos = sizeof($daraArray);
+        $nbrRecos = sizeof($dataArray);
         if($nbrRecos > 1)
         {
             for ($i=0; $i < $nbrRecos; $i++) 
             {
+                //Rajoute la classe "active" au premier élément des indicateurs (le premier élement affiché)
                 $ifFirstCarousel = "";
                 if($i == 0)
                 {
@@ -44,8 +50,9 @@ function carousel($carouselType, $daraArray)
     </ol>
     <div class="carousel-inner">
         <?php 
-        foreach ($daraArray as $data) 
+        foreach ($dataArray as $data) 
         {
+            //Pareil que pour les indicateurs, mais pour les éléments du carousel
             $firstReco = "";
             if($data['id'] == '1')
             {
@@ -54,38 +61,48 @@ function carousel($carouselType, $daraArray)
         <div class="carousel-item <?=$firstReco?>">
         <?php 
         if($img)
-        {?>
+        {
+        //Affiche des images s'il s'agit du carousel des travaux
+        //Il s'agit aussi d'un lien pour voir plus en détails ce projet spécifique?>
         <a href="index.php?page=detail-projet&id=<?=$data["id"]?>"><img class="d-block w-100" src="assets/img/works/<?=$data["image"]?>"></a>
         <?php }
         ?>
             <div class="carousel-caption">
                 <?php 
                 $commentaire = "";
-                $tailleReco = mb_strlen($data[$comment]);
-                if($tailleReco > 100 )
+                $tailleChaine = mb_strlen($data[$comment]);
+                //Si la taille de la chaîne est plus grande que la limite de caractère indiqué...
+                if($tailleChaine > $characterLimit)
                 {
-                    $commentaireReduit = mb_substr($data[$comment], 0, $characterLimit);
-                    $commentaireExplode = explode(" ", $commentaireReduit);
+                    //Divise les commentaires des recommandations ou les descriptions des travaux en plus petit pour en faire
+                    //des résumés à affiché dans les carousels
+                    $commentaireReduit = mb_substr($data[$comment], 0, $characterLimit); //Récupère les $characterLimit premiers caractères
+                    $commentaireExplode = explode(" ", $commentaireReduit); //Enlève les espaces et stock tous les éléments récupérés dans un tableau
+                    array_pop($commentaireExplode); //Retire le dernier élément du tableau car cela pourrait être un mot coupé par mb_substr
                     for ($i=0; $i < sizeof($commentaireExplode)-1; $i++) 
-                    { 
+                    {
                         $commentaire .= $commentaireExplode[$i];
-                        if($i < sizeof($commentaireExplode)-2)
+                        if($i < sizeof($commentaireExplode)-2) //-2 Pour être sûr que le boucle passe dans le else
                         {
+                            //Remet les espaces entre les mots
                             $commentaire .= " ";
                         }
                         else
                         {
+                            //Met [...] à la fin du résumé pour indiquer qu'il y a quelque chose après
                             $commentaire .= "[...]";
                         }
                     }
                 }
+                //Sinon, on affiche simplement ce que l'on a dans la chaîne
                 else
                 {
                     $commentaire = $data[$comment];
                 }
                 ?>
                 <p><?=$commentaire?></p>
-                <?php 
+                <?php
+                //Rajoute une source pour les recommandations (uniquement les recommandations) 
                 if($recommandation)
                 {?>
                 <p><?=$data['prenom'].' '.$data['nom'].' le '.$data['date_created']?></p>
@@ -97,6 +114,7 @@ function carousel($carouselType, $daraArray)
         ?>
     </div>
     <?php 
+    //On affiche les flèches de navigation du carousel seulement si il y a plus d'un élément
     if($nbrRecos > 1)
     {?>
     <a class="carousel-control-prev" href="#<?=$id?>" role="button" data-slide="prev">
@@ -111,6 +129,7 @@ function carousel($carouselType, $daraArray)
     ?>
     </div>
     <?php
+    //On affiche les bouttons lié aux recommandations seulement si c'est nécessaire
     if($recommandation)
     {?>
     <div class="carousel-buttons">

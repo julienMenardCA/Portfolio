@@ -1,3 +1,4 @@
+<!-- Barre de navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
     <div class="container">
         <a class="navbar-brand js-scroll-trigger" href="/portfolio-dev/">Portfolio de Julien Menard</a>
@@ -7,6 +8,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <?php 
+                    //Si l'admin est connecté, ces deux bouttons s'affichent
                     if(isset($_SESSION['admin']['connected']) && $_SESSION['admin']['connected'] === true)
                     {?>
                     <li class="nav-item">

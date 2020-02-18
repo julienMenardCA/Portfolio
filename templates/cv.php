@@ -1,3 +1,4 @@
+<!-- Affichage de mon CV -->
 <div class="cv">
 <h4>Esprit d’équipe – Créatif – Envie d’apprendre</h4>
 <br>

@@ -2,6 +2,7 @@
 
 <main>
     <?php 
+    //Affiche toutes les récommandations sur une seule page
     foreach ($allRecommandations as $recommandation) 
     {?>
         <div class="recommendations">
