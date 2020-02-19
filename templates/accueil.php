@@ -17,7 +17,8 @@ include("carousel.php");?>
         <div class="row">
             <div class="col-lg-8 mx-auto">
                 <h2>Accueil</h2>
-                <p></p>
+                <p>Bienvenue sur mon portfolio. Plus bas vous trouverez mon CV, mes travaux réalisés et des 
+                    recommandations laissés par des professionnels.</p>
             </div>
         </div>
     </div>
