@@ -33,7 +33,9 @@
 
     <!-- Utilisation de mon propre fichier javascript -->
     <script src="js/app.js"></script>
-    
+
+    <!-- reCAPTCHA -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body id="page-top" class="pt-5">
 <?php include("navbar.php") ?>

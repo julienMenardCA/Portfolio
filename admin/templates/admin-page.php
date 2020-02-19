@@ -38,6 +38,11 @@ include(dirname(__FILE__)."/../../templates/top.php");?>
             echo '</div>';
         }   
     ?>
+    <!-- <br>
+    <form action="index.php?page=truncate&table=recommandations" method="post">
+        <button class="btn btn-primary" type="submit">Truncate table recommandations</button>
+    </form>
+    <br> -->
 </main>
 
 <?php include(dirname(__FILE__)."/../../templates/bottom.php") ?>

@@ -121,6 +121,11 @@ Class Controller
         {
             $errors[] = "Vous avez renseigné un message trop long.";
         }
+
+        if(!array_key_exists('cgu-read', $_POST) || $_POST['cgu-read'] !== 'on')
+        {
+            $errors[] = "Vous devez validé avoir lu les Mentions Légales.";
+        }
         
         return $errors;
     }
@@ -402,6 +407,14 @@ Class Controller
         {
             $this->fourOfour();
         }
+    }
+
+    public function truncateTable()
+    {
+        $manager = new Manager();
+        $manager->truncateTable($_GET['table']);
+
+        header("Location: index.php?page=itsadmintime");
     }
 
     public function fourOfour()

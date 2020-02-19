@@ -157,4 +157,17 @@ class Manager
         return $worksHome;
     }
 
+    public function truncateTable($table)
+    {
+        $sql = "DELETE FROM :tableT;
+                ALTER TABLE :tableT AUTO_INCREMENT = 1";
+
+        $pdo = DbConnection::getPdo();
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+            ":tableT" => $table,
+        ]);
+    }
+
 }

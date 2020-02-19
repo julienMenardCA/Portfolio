@@ -50,11 +50,12 @@ function carousel($carouselType, $dataArray)
     </ol>
     <div class="carousel-inner">
         <?php 
+        $firstDiapoNbr = $dataArray[0]['id'];
         foreach ($dataArray as $data) 
         {
             //Pareil que pour les indicateurs, mais pour les éléments du carousel
             $firstReco = "";
-            if($data['id'] == '1')
+            if($data['id'] == $firstDiapoNbr)
             {
                 $firstReco = 'active';
             }?>

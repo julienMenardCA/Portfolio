@@ -67,6 +67,10 @@ elseif($_GET['page'] == "detail-projet")
 {
     $controller->workDetails();
 }
+elseif($_GET['page'] == "truncate")
+{
+    $controller->truncateTable();
+}
 //Si la nom de la page n'est pas reconnue => 404
 else 
 {

@@ -26,9 +26,12 @@
             <div class="droite">
                 <div class="form-group">
                     <label for="content">Contenu de votre message</label>
-                    <textarea name="content" id="content" rows="8" cols="50" required maxlength="500"></textarea>
+                    <textarea name="content" id="content" rows="7" cols="50" required maxlength="500"></textarea>
                 </div>
-            
+                <div class="form-group">
+                    <label for="cgu-read">J'ai lu et compris les <a href="index.php?page=mentions">Mentions Légales</a></label>
+                    <input type="checkbox" id="cgu-read" name="cgu-read">
+                </div>
             
                 <?php 
                 //affiche les éventuelles erreurs de validations
@@ -61,6 +64,7 @@
                     echo '</div>';
                 }
                 ?>
+                <div class="g-recaptcha form-group" data-sitekey="6LeQTdoUAAAAAIw1VH9kNj4IvWRnWX1tFlkK-7iS"></div>
 
                 <button class="btn btn-primary">Envoyer !</button>
             </div>
