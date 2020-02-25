@@ -111,10 +111,9 @@ Thumbs.db
 
 # Ignore le dossier des images uploadés
 /assets/img/works
-assets/img/imie_background-2.png
 
-.gitignore
-.gitattributes
+#Ignore un fichier de tests
+assets/img/imie_background-2.png
 
 composer.json
 composer.lock
