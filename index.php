@@ -31,50 +31,42 @@ if (empty($_GET['page']) || $_GET['page'] == "accueil")
 {
     $controller->home();
 }
-elseif($_GET['page'] == "mentions")
+else
 {
-    $controller->mentions();
-}
-elseif($_GET['page'] == "contact")
-{
-    $controller->contact();
-}
-elseif($_GET['page'] == "cv")
-{
-    $controller->cv();
-}
-elseif($_GET['page'] == "ajout-recommandation")
-{
-    $controller->addRecommandations();
-}
-elseif($_GET['page'] == "toutes-recommandation")
-{
-    $controller->allRecommandations();
-}
-elseif($_GET['page'] == "itslogintime")
-{
-    $controller->adminLogin();
-}
-elseif($_GET['page'] == "itsadmintime")
-{
-    $controller->adminPage();
-}
-elseif($_GET['page'] == "itsdecotime")
-{
-    $controller->adminLogOff();
-}
-elseif($_GET['page'] == "detail-projet")
-{
-    $controller->workDetails();
-}
-elseif($_GET['page'] == "truncate")
-{
-    $controller->truncateTable();
-}
-//Si la nom de la page n'est pas reconnue => 404
-else 
-{
-    $controller->fourOfour();
+    switch ($_GET['page']) 
+    {
+        case 'mentions':
+            $controller->mentions();
+            break;
+        case 'contact':
+            $controller->contact();
+            break;
+        case 'cv':
+            $controller->cv();
+            break;
+        case 'ajout-recommandation':
+            $controller->addRecommandations();
+            break;
+        case 'toutes-recommandation':
+            $controller->allRecommandations();
+            break;
+        case 'itslogintime':
+            $controller->adminLogin();
+            break;
+        case 'itsadmintime':
+            $controller->adminPage();
+            break;
+        case 'itsdecotime':
+            $controller->adminLogOff();
+            break;
+        case 'detail-projet':
+            $controller->workDetails();
+            break;
+        
+        default:
+            $controller->fourOfour();
+            break;
+    }
 }
 
 ?>

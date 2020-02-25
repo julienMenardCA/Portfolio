@@ -7,13 +7,14 @@
     <?php 
     if($work['lien_github'] !== null && $work['lien_github'] !== 'null')
     {?>
-    <a href="<?=$work['lien_github']?>" target="_blank">Lien Github</a>
+    <a href="<?=$work['lien_github']?>" target="_blank">Github</a>
     <?php }
     ?>
     <?php 
     if($work['lien_web'] !== null && $work['lien_web'] !== 'null')
     {?>
-    <a href="<?=$work['lien_web']?>" target="_blank">Lien Github</a>
+    <br>
+    <a href="<?=$work['lien_web']?>" target="_blank">Lien vers le projet</a>
     <?php }
     ?>
 </main>
