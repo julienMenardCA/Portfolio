@@ -1,3 +1,4 @@
+//Code JS pour le bouton de retour en haut de page
 $(document).ready(function(){
 	$(window).scroll(function () {
 			if ($(this).scrollTop() > 50) {
