@@ -35,6 +35,7 @@ Class Controller
         $entreprise = strip_tags($_POST['entreprise']);
         $locationEntreprise = strip_tags($_POST['location_entreprise']);
         $content = strip_tags($_POST['content']);
+        $reCaptchaResponse = $_POST['g-recaptcha-response'];
 
         $this->formInfos = [
             "lastname" => $lastName,
@@ -125,6 +126,31 @@ Class Controller
         if(!array_key_exists('cgu-read', $_POST) || $_POST['cgu-read'] !== 'on')
         {
             $errors[] = "Vous devez validé avoir lu les Mentions Légales.";
+        }
+
+        if($reCaptchaResponse == "")
+        {
+            $errors[] = "Veuillez cocher le ReCaptcha.";
+        }
+
+        //Pour vérifier la sur la réponse du reCaptcha est bonne ou non
+        $verifyCaptchaUrl = 'https://www.google.com/recaptcha/api/siteverify';
+        $data = array(
+            'secret' => '6LeQTdoUAAAAAJDAnSBnSpnB4AASu7Lf4BFj36T1',
+            'response' => $reCaptchaResponse
+        );
+        $options = array(
+            'http' => array (
+                'method' => 'POST',
+                'content' => http_build_query($data)
+            )
+        );
+        $context = stream_context_create($options);
+        $verifyReCaptcha = file_get_contents($verifyCaptchaUrl, false, $context);
+        $reCaptchaSuccess = json_decode($verifyReCaptcha);
+        if($reCaptchaSuccess->success == false)
+        {
+            $errors[] = "Dégage le méchant robot !";
         }
         
         return $errors;
