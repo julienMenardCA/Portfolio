@@ -249,7 +249,7 @@ Class Controller
         if (!empty($_POST)) 
         {
             //par défaut je dis que c'est pas valide
-            $formIsValid = false;
+            //$formIsValid = false;
 
             //récupérer le username ou l'email 
             $email = $_POST['email'];
@@ -389,7 +389,7 @@ Class Controller
             }
             elseif(strlen($description > 500))
             {
-                $errors[] = "Article trop long";
+                $errors[] = "Description trop longue";
             }
 
             if(empty($github))

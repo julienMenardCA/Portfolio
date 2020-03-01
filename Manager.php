@@ -50,7 +50,7 @@ class Manager
     public function saveNewRecommandation($formInfos)
     {
         $datetime = new DateTime();
-        $datetime = $datetime->format("d/m/y à H:i:s");
+        $datetime = $datetime->format('Y-m-d H:i:s');
 
         $sql = "INSERT INTO 
                 recommandations (nom, prenom, mail, entreprise, location_entreprise, commentaire, date_created)
@@ -98,10 +98,13 @@ class Manager
      */
     public function addWork($workInfos)
     {
+        $datetime = new DateTime();
+        $datetime = $datetime->format('Y-m-d H:i:s');
+
         $sql = "INSERT INTO 
-                travaux (titre, description, image, lien_github, lien_web)
+                travaux (titre, description, image, lien_github, lien_web, date_created)
                 VALUES
-                (:titre, :description, :image, :lien_github, :lien_web)";
+                (:titre, :description, :image, :lien_github, :lien_web, :date_created)";
 
         $pdo = DbConnection::getPdo();
 
@@ -113,6 +116,7 @@ class Manager
             ":image" => $workInfos['picture'],
             ":lien_github" => $workInfos['github'],
             ":lien_web" => $workInfos['webLink'],
+            ":date_created" => $datetime,
         ]);
 
         return $pdo->lastInsertId();
@@ -155,19 +159,6 @@ class Manager
 
         $worksHome = $stmt->fetchAll();
         return $worksHome;
-    }
-
-    public function truncateTable($table)
-    {
-        $sql = "DELETE FROM :tableT;
-                ALTER TABLE :tableT AUTO_INCREMENT = 1";
-
-        $pdo = DbConnection::getPdo();
-
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([
-            ":tableT" => $table,
-        ]);
     }
 
 }
