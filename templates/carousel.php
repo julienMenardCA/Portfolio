@@ -64,51 +64,51 @@ function carousel($carouselType, $dataArray)
         if($img)
         {
         //Affiche des images s'il s'agit du carousel des travaux
-        //Il s'agit aussi d'un lien pour voir plus en détails ce projet spécifique?>
+        //Il s'agit aussi d'un lien pour voir plus en détails ce projet spécifique ?>
         <a href="index.php?page=detail-projet&id=<?=$data["id"]?>"><img class="d-block w-100" src="assets/img/works/<?=$data["image"]?>"></a>
         <?php }
         ?>
-            <div class="carousel-caption">
-                <?php 
-                $commentaire = "";
-                $tailleChaine = mb_strlen($data[$comment]);
-                //Si la taille de la chaîne est plus grande que la limite de caractère indiqué...
-                if($tailleChaine > $characterLimit)
+        <div class="carousel-caption">
+            <?php
+            $commentaire = "";
+            $tailleChaine = mb_strlen($data[$comment]);
+            //Si la taille de la chaîne est plus grande que la limite de caractère indiqué...
+            if($tailleChaine > $characterLimit)
+            {
+                //Divise les commentaires des recommandations ou les descriptions des travaux en plus petit pour en faire
+                //des résumés à affiché dans les carousels
+                $commentaireReduit = mb_substr($data[$comment], 0, $characterLimit); //Récupère les $characterLimit premiers caractères
+                $commentaireExplode = explode(" ", $commentaireReduit); //Enlève les espaces et stock tous les éléments récupérés dans un tableau
+                array_pop($commentaireExplode); //Retire le dernier élément du tableau car cela pourrait être un mot coupé par mb_substr
+                for ($i=0; $i < sizeof($commentaireExplode)-1; $i++)
                 {
-                    //Divise les commentaires des recommandations ou les descriptions des travaux en plus petit pour en faire
-                    //des résumés à affiché dans les carousels
-                    $commentaireReduit = mb_substr($data[$comment], 0, $characterLimit); //Récupère les $characterLimit premiers caractères
-                    $commentaireExplode = explode(" ", $commentaireReduit); //Enlève les espaces et stock tous les éléments récupérés dans un tableau
-                    array_pop($commentaireExplode); //Retire le dernier élément du tableau car cela pourrait être un mot coupé par mb_substr
-                    for ($i=0; $i < sizeof($commentaireExplode)-1; $i++) 
+                    $commentaire .= $commentaireExplode[$i];
+                    if($i < sizeof($commentaireExplode)-2) //-2 Pour être sûr que le boucle passe dans le else
                     {
-                        $commentaire .= $commentaireExplode[$i];
-                        if($i < sizeof($commentaireExplode)-2) //-2 Pour être sûr que le boucle passe dans le else
-                        {
-                            //Remet les espaces entre les mots
-                            $commentaire .= " ";
-                        }
-                        else
-                        {
-                            //Met [...] à la fin du résumé pour indiquer qu'il y a quelque chose après
-                            $commentaire .= "[...]";
-                        }
+                        //Remet les espaces entre les mots
+                        $commentaire .= " ";
+                    }
+                    else
+                    {
+                        //Met [...] à la fin du résumé pour indiquer qu'il y a quelque chose après
+                        $commentaire .= "[...]";
                     }
                 }
-                //Sinon, on affiche simplement ce que l'on a dans la chaîne
-                else
-                {
-                    $commentaire = $data[$comment];
-                }
-                ?>
-                <p><?=$commentaire?></p>
-                <?php
-                //Rajoute une source pour les recommandations (uniquement les recommandations) 
-                if($recommandation)
-                {?>
-                <p><?=$data['prenom'].' '.$data['nom'].' le '.$data['date_created']?></p>
-                <?php }
-                ?>
+            }
+            //Sinon, on affiche simplement ce que l'on a dans la chaîne
+            else
+            {
+                $commentaire = $data[$comment];
+            }
+            ?>
+            <p><?=$commentaire?></p>
+            <?php
+            //Rajoute une source pour les recommandations (uniquement les recommandations)
+            if($recommandation)
+            {?>
+            <p><?=$data['prenom'].' '.$data['nom'].' le '.$data['date_created']?></p>
+            <?php }
+            ?>
             </div>
         </div>
         <?php }

@@ -14,15 +14,15 @@ include(dirname(__FILE__)."/../../templates/top.php");?>
         </div>
         <div class="form-group">
             <label for="github">Lien Github</label>
-            <input class="form-control" type="text" name="github" id="github" value="<?php if(!empty($_POST['github'])){echo $_POST['github'];} ?>" required>
+            <input class="form-control" type="text" name="github" id="github" value="<?php if(!empty($_POST['github'])){echo $_POST['github'];} ?>">
         </div>
         <div class="form-group">
             <label for="web-link">Lien web</label>
-            <input class="form-control" type="text" name="web-link" id="web-link" value="<?php if(!empty($_POST['web-link'])){echo $_POST['web-link'];} ?>" required>
+            <input class="form-control" type="text" name="web-link" id="web-link" value="<?php if(!empty($_POST['web-link'])){echo $_POST['web-link'];} ?>">
         </div>
         <div class="form-group">
             <label for="pic">Choisir une image à téléverser :</label>
-            <input type="file" name="pic" id="pic">
+            <input type="file" name="pic" id="pic" required>
         </div>
 
         <button class="btn btn-primary">Envoyer !</button>
@@ -38,11 +38,6 @@ include(dirname(__FILE__)."/../../templates/top.php");?>
             echo '</div>';
         }   
     ?>
-    <!-- <br>
-    <form action="index.php?page=truncate&table=recommandations" method="post">
-        <button class="btn btn-primary" type="submit">Truncate table recommandations</button>
-    </form>
-    <br> -->
 </main>
 
 <?php include(dirname(__FILE__)."/../../templates/bottom.php") ?>

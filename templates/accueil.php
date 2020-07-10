@@ -3,13 +3,7 @@ include("top.php");
 //Inclue carousel.php pour ensuite appellé sa fonction pour afficher les carousels
 include("carousel.php");?>
 <!-- Page d'accueil -->
-<header class="bg-primary text-white" id="imieBgnd">
-    <div class="container text-center">
-      <div id="img-text">
-        <h1>Welcome to my success</h1>
-      </div>
-    </div>
-</header>
+<header class="bg-primary text-white" id="imieBgnd"></header>
 
 <main>
 <section id="Accueil">
@@ -32,7 +26,7 @@ include("carousel.php");?>
                 <?php include("cv.php") ?>
                 <br>
                 <form action="index.php?page=cv" method="post" target="_blank">
-                    <button class="btn btn-primary" type="submit">Voir mon CV en plein écran (format pdf)</button>
+                    <button class="btn btn-primary" type="submit">Voir mon CV (format pdf)</button>
                 </form>
             </div>
         </div>

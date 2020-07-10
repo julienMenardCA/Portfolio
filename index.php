@@ -1,6 +1,9 @@
-<?php 
-//on inclue ici toutes nos classes ! 
-spl_autoload_register();
+<?php
+include("Controller.php");
+
+//on commence par inclure toutes nos classes !  
+
+ini_set('display_errors',1);
 
 //rend disponible toutes nos dépendances chargées par composer
 include("vendor/autoload.php");
@@ -68,5 +71,4 @@ else
             break;
     }
 }
-
 ?>

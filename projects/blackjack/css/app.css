@@ -1,0 +1,45 @@
+body {
+    background-color: rgb(12, 143, 12);
+    margin: 0;
+}
+
+.cards {
+    width: 150px;
+    height: auto;
+}
+
+.jeu-de-cartes {
+    display: flex;
+    text-align: center;
+    justify-content: space-evenly;
+}
+
+.deck {
+    justify-content: left;
+}
+
+.deck p {
+    margin-top: 0;
+}
+
+.croupier {
+    margin-bottom: 5vh;
+}
+
+main {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.state-of-game {
+    font-weight: bold;
+    margin-bottom: 4vh;
+}
+
+.new-game-button {
+    margin: 1em;
+}
+
+.money {
+    margin-top: 15vh;
+}

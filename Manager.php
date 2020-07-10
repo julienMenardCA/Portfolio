@@ -4,6 +4,7 @@
  * Une requête par méthode ! 
  * SRP : single responsability principle
  */
+include("DbConnection.php");
 class Manager
 {
     /**

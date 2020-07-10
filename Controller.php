@@ -5,6 +5,8 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
+include("Manager.php");
+
 Class Controller
 {
     private $formInfos = [];
@@ -177,12 +179,12 @@ Class Controller
                 $messageState = false;
                 try {
                     //Server settings
-                    //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
-                    $mail->isSMTP();                                            // Send using SMTP            
+                    $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
+                    //$mail->isSMTP();                                            // Send using SMTP            
                     $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
                     $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
                     $mail->Username   = 'portfolio.messages.julien.menard@gmail.com';                     // SMTP username
-                    $mail->Password   = 'PortfolioJulienMenard.1234.';                               // SMTP password
+                    $mail->Password   = 'mdp';                               // SMTP password
                     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
                     $mail->Port       = 587;                                    // TCP port to connect to
                     
@@ -433,14 +435,6 @@ Class Controller
         {
             $this->fourOfour();
         }
-    }
-
-    public function truncateTable()
-    {
-        $manager = new Manager();
-        $manager->truncateTable($_GET['table']);
-
-        header("Location: index.php?page=itsadmintime");
     }
 
     public function fourOfour()

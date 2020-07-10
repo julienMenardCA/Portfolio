@@ -8,12 +8,12 @@ include(dirname(__FILE__)."/../../templates/top.php");?>
     <form method="post">
         <div class="form-group"> 
             <label for="username">Votre email</label>
-            <input class="form-control" type="email" name="email" id="email">
+            <input class="form-control" type="email" name="email" id="email" required>
         </div>
         
         <div class="form-group"> 
             <label for="password">Votre mot de passe</label>
-            <input class="form-control" type="password" name="password" id="password">
+            <input class="form-control" type="password" name="password" id="password" required>
         </div>
     
         <?php 
