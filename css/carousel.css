@@ -3,13 +3,20 @@
 }
 
 .carousel-inner{
-height: 200px;
+    height: 40vh;
+    position: relative;
+    border-radius: 10px;
+}
+
+.carousel-inner a img{
+    border-radius: 10px;
 }
 
 .carousel-caption{
+    top: 25vh;
+    bottom: auto;
     color: black;
-    top: 50%;
-    margin-bottom: 2%;
+    text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white;
 }
 
 .carousel-control-prev-icon,
@@ -34,7 +41,7 @@ height: 200px;
 }
 
 .carousel-indicators {
-    margin-bottom: 16px;
+    margin-bottom: 5px;
 }
 
 .carousel-indicators li {

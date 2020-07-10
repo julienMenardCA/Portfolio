@@ -114,6 +114,3 @@ Thumbs.db
 
 #Ignore un fichier de tests
 assets/img/imie_background-2.png
-
-composer.json
-composer.lock

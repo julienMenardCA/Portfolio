@@ -5,6 +5,8 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
+include("Manager.php");
+
 Class Controller
 {
     private $formInfos = [];
@@ -35,6 +37,7 @@ Class Controller
         $entreprise = strip_tags($_POST['entreprise']);
         $locationEntreprise = strip_tags($_POST['location_entreprise']);
         $content = strip_tags($_POST['content']);
+        $reCaptchaResponse = $_POST['g-recaptcha-response'];
 
         $this->formInfos = [
             "lastname" => $lastName,
@@ -126,6 +129,31 @@ Class Controller
         {
             $errors[] = "Vous devez validé avoir lu les Mentions Légales.";
         }
+
+        if($reCaptchaResponse == "")
+        {
+            $errors[] = "Veuillez cocher le ReCaptcha.";
+        }
+
+        //Pour vérifier la sur la réponse du reCaptcha est bonne ou non
+        $verifyCaptchaUrl = 'https://www.google.com/recaptcha/api/siteverify';
+        $data = array(
+            'secret' => '6LeQTdoUAAAAAJDAnSBnSpnB4AASu7Lf4BFj36T1',
+            'response' => $reCaptchaResponse
+        );
+        $options = array(
+            'http' => array (
+                'method' => 'POST',
+                'content' => http_build_query($data)
+            )
+        );
+        $context = stream_context_create($options);
+        $verifyReCaptcha = file_get_contents($verifyCaptchaUrl, false, $context);
+        $reCaptchaSuccess = json_decode($verifyReCaptcha);
+        if($reCaptchaSuccess->success == false)
+        {
+            $errors[] = "Dégage le méchant robot !";
+        }
         
         return $errors;
     }
@@ -151,12 +179,12 @@ Class Controller
                 $messageState = false;
                 try {
                     //Server settings
-                    //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
-                    $mail->isSMTP();                                            // Send using SMTP            
+                    $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
+                    //$mail->isSMTP();                                            // Send using SMTP            
                     $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
                     $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
                     $mail->Username   = 'portfolio.messages.julien.menard@gmail.com';                     // SMTP username
-                    $mail->Password   = 'PortfolioJulienMenard.1234.';                               // SMTP password
+                    $mail->Password   = 'mdp';                               // SMTP password
                     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
                     $mail->Port       = 587;                                    // TCP port to connect to
                     
@@ -223,7 +251,7 @@ Class Controller
         if (!empty($_POST)) 
         {
             //par défaut je dis que c'est pas valide
-            $formIsValid = false;
+            //$formIsValid = false;
 
             //récupérer le username ou l'email 
             $email = $_POST['email'];
@@ -363,7 +391,7 @@ Class Controller
             }
             elseif(strlen($description > 500))
             {
-                $errors[] = "Article trop long";
+                $errors[] = "Description trop longue";
             }
 
             if(empty($github))
@@ -407,14 +435,6 @@ Class Controller
         {
             $this->fourOfour();
         }
-    }
-
-    public function truncateTable()
-    {
-        $manager = new Manager();
-        $manager->truncateTable($_GET['table']);
-
-        header("Location: index.php?page=itsadmintime");
     }
 
     public function fourOfour()
