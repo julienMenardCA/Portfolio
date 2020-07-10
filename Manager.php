@@ -103,9 +103,9 @@ class Manager
         $datetime = $datetime->format('Y-m-d H:i:s');
 
         $sql = "INSERT INTO 
-                travaux (titre, description, image, lien_github, lien_web, date_created)
+                travaux (titre, description, image, lien_github, lien_projet, date_created)
                 VALUES
-                (:titre, :description, :image, :lien_github, :lien_web, :date_created)";
+                (:titre, :description, :image, :lien_github, :lien_projet, :date_created)";
 
         $pdo = DbConnection::getPdo();
 
@@ -116,7 +116,7 @@ class Manager
             ":description" => $workInfos['description'],
             ":image" => $workInfos['picture'],
             ":lien_github" => $workInfos['github'],
-            ":lien_web" => $workInfos['webLink'],
+            ":lien_projet" => $workInfos['webLink'],
             ":date_created" => $datetime,
         ]);
 
