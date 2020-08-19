@@ -22,12 +22,14 @@ include("carousel.php");?>
     <div class="container">
         <div class="row">
             <div class="col-lg-8 mx-auto">
-                <h2>Curriculum Vitae</h2>
-                <?php include("cv.php") ?>
-                <br>
-                <form action="index.php?page=cv" method="post" target="_blank">
-                    <button class="btn btn-primary" type="submit">Voir mon CV (format pdf)</button>
-                </form>
+                <button type="button" class="collapsible"><h2>Curriculum Vitae</h2></button>
+                <div class="content">
+                    <?php include("cv.php") ?>
+                    <br>
+                    <form action="index.php?page=cv" method="post" target="_blank">
+                        <button class="btn btn-primary" type="submit">Voir mon CV (format pdf)</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

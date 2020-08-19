@@ -30,7 +30,7 @@
                         <textarea name="content" id="content" rows="7" cols="50" required maxlength="500"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="cgu-read">J'ai lu et compris les <a href="index.php?page=mentions">Mentions Légales</a></label>
+                        <label for="cgu-read">J'ai lu et compris les <a href="index.php?page=cgu">Conditions Générales d'Utilisation</a></label>
                         <input type="checkbox" id="cgu-read" name="cgu-read">
                     </div>
 
