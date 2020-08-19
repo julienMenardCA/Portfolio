@@ -38,8 +38,8 @@ else
 {
     switch ($_GET['page']) 
     {
-        case 'mentions':
-            $controller->mentions();
+        case 'cgu':
+            $controller->cgu();
             break;
         case 'contact':
             $controller->contact();

@@ -127,7 +127,7 @@ Class Controller
 
         if(!array_key_exists('cgu-read', $_POST) || $_POST['cgu-read'] !== 'on')
         {
-            $errors[] = "Vous devez validé avoir lu les Mentions Légales.";
+            $errors[] = "Vous devez validé avoir lu les Conditions Générales d'Utilisation.";
         }
 
         if($reCaptchaResponse == "")
@@ -158,9 +158,9 @@ Class Controller
         return $errors;
     }
 
-    public function mentions()
+    public function cgu()
     {
-        include("templates/mentions-legales.php");
+        include("templates/cgu.php");
     }
     /**
      * Traitement du formaulaire de contact et envoie de mail
