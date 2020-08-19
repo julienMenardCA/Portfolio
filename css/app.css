@@ -30,6 +30,10 @@ main {
     text-decoration: underline;
 }
 
+#liens-projet {
+	margin-bottom: 5vh;
+}
+
 #imieBgnd {
     background-image: url("../assets/img/imie_background.png");
     background-size: 40em;
