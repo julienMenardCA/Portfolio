@@ -48,7 +48,7 @@ function carousel($carouselType, $dataArray)
             <?php }
         }?>
     </ol>
-    <div class="carousel-inner">
+    <div class="carousel-inner" id="inner-<?=$carouselType?>">
         <?php 
         $firstDiapoNbr = $dataArray[0]['id'];
         foreach ($dataArray as $data) 
@@ -105,8 +105,10 @@ function carousel($carouselType, $dataArray)
             <?php
             //Rajoute une source pour les recommandations (uniquement les recommandations)
             if($recommandation)
-            {?>
-            <p><?=$data['prenom'].' '.$data['nom'].' le '.$data['date_created']?></p>
+            {
+                $date = DateTime::createFromFormat('Y-m-d H:i:s', $data['date_created']);
+                ?>
+                <p><?=$data['prenom'].' '.$data['nom'].' le '.$date->format('d/m/Y à H:i')?></p>
             <?php }
             ?>
             </div>

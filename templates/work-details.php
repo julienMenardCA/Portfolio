@@ -6,19 +6,23 @@
     <br>
     <br>
     <p><?=$work['description']?></p>
-    <?php 
-    if($work['lien_github'] !== null && $work['lien_github'] !== 'null')
-    {?>
-        <a href="<?=$work['lien_github']?>" target="_blank">Github</a>
-    <?php }
-    ?>
-    <?php 
-    if($work['lien_projet'] !== null && $work['lien_projet'] !== 'null')
-    {?>
-        <br>
-        <a href="<?=$work['lien_projet']?>" target="_blank">Lien vers le projet</a>
-    <?php }
-    ?>
+    <div id="liens-projet">
+        <?php 
+            if($work['lien_github'] !== null && $work['lien_github'] !== 'null')
+            {?>
+                <a href="<?=$work['lien_github']?>" target="_blank">Github</a>
+                <br>
+            <?php }
+            ?>
+            <?php 
+            if($work['lien_projet'] !== null && $work['lien_projet'] !== 'null')
+            {?>
+                <a href="<?=$work['lien_projet']?>" target="_blank">Lien vers le projet</a>
+                <br>
+            <?php }
+        ?>
+    </div>
+    
 </main>
 
 <?php include("bottom.php") ?>
