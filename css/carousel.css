@@ -1,11 +1,18 @@
 .carousel{
-    margin-top: 50px;
+    margin-bottom: 1vh;
 }
 
 .carousel-inner{
-    height: 40vh;
     position: relative;
     border-radius: 10px;
+}
+
+#inner-travaux {
+	height: 40vh;
+}
+
+#inner-recommandations {
+	height: 15vh;
 }
 
 .carousel-inner a img{
@@ -13,10 +20,14 @@
 }
 
 .carousel-caption{
-    top: 25vh;
+    top: 0;
     bottom: auto;
     color: black;
     text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white;
+}
+
+#inner-travaux .carousel-caption {
+	top: 25vh;
 }
 
 .carousel-control-prev-icon,

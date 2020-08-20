@@ -9,7 +9,7 @@
     <title>Portfolio - Julien Menard</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
 
     <!-- Styles customisés pour ce template -->
     <link href="css/scrolling-nav.css" rel="stylesheet">
@@ -24,9 +24,9 @@
     <link rel="stylesheet" href="css/carousel.css">
 
     <!-- Bootstrap core JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="js/bootstrap/bootstrap.min.js"></script>
 
     <!-- Javascript customisé pour ce template-->
     <script src="js/scrolling-nav.js"></script>
